@@ -27,6 +27,23 @@ options:
                         Level of confidence to be set. Default: 7
 ```
 
+### Example
+
+```
+python3 squatdetect.py --packages baeutifulsoup4
+**baeutifulsoup4** might be impersonating beautifulsoup4 (92.857143% similar)
+**baeutifulsoup4** might be impersonating beautifulsoup (88.888889% similar)
+```
+
+with shell override to prevent on installation:
+
+```
+$ pip3 install baeutifulsoup4
+**baeutifulsoup4** might be impersonating beautifulsoup4 (92.857143% similar)
+**baeutifulsoup4** might be impersonating beautifulsoup (88.888889% similar)
+$
+```
+
 ### Supported package types
 
 `pip`: The dataset is based on https://pypistats.org/ (`pip.json`)
