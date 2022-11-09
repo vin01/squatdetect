@@ -1,0 +1,4 @@
+function pip3 {
+~/.local/bin/squatdetect.py --packages "${@: -1}" | grep 'might be impersonating' && return
+$(which pip3) "$@"
+}
