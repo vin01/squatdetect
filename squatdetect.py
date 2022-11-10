@@ -10,12 +10,16 @@ typosquatted packages. No magic, just stdlib :)
 For example:
 
 function pip3 {
-~/.local/bin/squatdetect.py --packages "${@: -1}" | grep 'might be impersonating' && return
+if [[ -n "$1" ]] && [[ "$1" = 'install' ]]; then
+  ~/.local/bin/squatdetect.py --packages "${@: -1}" | grep 'might be impersonating' && return
+fi
 $(which pip3) "$@"
 }
 
 function gem {
-~/.local/bin/squatdetect.py --packages "${@: -1}" --type gem | grep 'might be impersonating' && return
+if [[ -n "$1" ]] && [[ "$1" = 'install' ]]; then
+  ~/.local/bin/squatdetect.py --packages "${@: -1}" --type gem | grep 'might be impersonating' && return
+fi
 $(which gem) "$@"
 }
 """

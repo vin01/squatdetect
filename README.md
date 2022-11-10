@@ -2,29 +2,38 @@
 Detect packages which might have been typosquatted based on string similarity level calculated from a dataset of popular packages.
 
 ```
-usage: squatdetect.py [-h] [--type [{pip}]] [--packages PACKAGES [PACKAGES ...]]
+usage: squatdetect.py [-h] [--type [{pip,gem}]] [--packages PACKAGES [PACKAGES ...]]
                       [--confidence {1,2,3,4,5,6,7,8,9}]
 
 Detect packages which might have been typosquatted based on string similarity
 level calculated from a dataset of popular packages.
-It can be coupled with a shell alias/function for pip/pip3 to prevent installing
-typosquatted packages. No magic, just stdlib :)
+It can be coupled with shell aliases/functions to prevent installing
+typosquatted packages which might happen just because we often mistype.
+No magic, just stdlib :)
 
 For example:
 
 function pip3 {
-~/.local/bin/squatdetect.py --packages "${@: -1}" | grep 'might be impersonating' && return
+if [[ -n "$1" ]] && [[ "$1" = 'install' ]]; then
+  ~/.local/bin/squatdetect.py --packages "${@: -1}" | grep 'might be impersonating' && return
+fi
 $(which pip3) "$@"
+}
+
+function gem {
+if [[ -n "$1" ]] && [[ "$1" = 'install' ]]; then
+  ~/.local/bin/squatdetect.py --packages "${@: -1}" --type gem | grep 'might be impersonating' && return
+fi
+$(which gem) "$@"
 }
 
 options:
   -h, --help            show this help message and exit
-  --type [{pip}]        Package type
+  --type [{pip,gem}]    Package type. Default: pip
   --packages PACKAGES [PACKAGES ...]
-                        Package(s) to check, if no packages are specified, all installed packages
-                        will be checked
+                        Package(s) to check, if no packages are specified, all installed packages will be checked
   --confidence {1,2,3,4,5,6,7,8,9}
-                        Level of confidence to be set. Default: 7
+                        Level of confidence to be set. Default: 8
 ```
 
 ### Example
@@ -48,3 +57,9 @@ $
 
 `pip`: The dataset is based on https://pypistats.org/ (`pip.json`)
 `gem`: The dataset is based on weekly dumps from https://rubygems.org/pages/data
+
+
+### Misc
+
+- https://blog.phylum.io/pypi-malware-replaces-crypto-addresses-in-developers-clipboard
+- https://blog.reversinglabs.com/blog/mining-for-malicious-ruby-gems
