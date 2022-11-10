@@ -4,8 +4,9 @@
 """
 Detect packages which might have been typosquatted based on string similarity
 level calculated from a dataset of popular packages.
-It can be coupled with a shell alias/function for pip/pip3 to prevent installing
-typosquatted packages. No magic, just stdlib :)
+It can be coupled with shell aliases/functions to prevent installing
+typosquatted packages which might happen just because we often mistype.
+No magic, just stdlib :)
 
 For example:
 
