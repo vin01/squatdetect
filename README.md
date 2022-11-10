@@ -63,3 +63,4 @@ $
 
 - https://blog.phylum.io/pypi-malware-replaces-crypto-addresses-in-developers-clipboard
 - https://blog.reversinglabs.com/blog/mining-for-malicious-ruby-gems
+- https://medium.com/checkmarx-security/typosquatting-attack-on-requests-one-of-the-most-popular-python-packages-3b0a329a892d
