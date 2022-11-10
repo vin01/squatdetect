@@ -55,8 +55,8 @@ $
 
 ### Supported package types
 
-`pip`: The dataset is based on https://pypistats.org/ (`pip.json`)
-`gem`: The dataset is based on weekly dumps from https://rubygems.org/pages/data
+- `pip`: The dataset is based on https://pypistats.org/ (`pip.json`)
+- `gem`: The dataset is based on weekly dumps from https://rubygems.org/pages/data
 
 
 ### Misc
