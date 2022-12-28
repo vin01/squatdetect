@@ -25,12 +25,15 @@ $(which gem) "$@"
 }
 """
 
+import os
 import sys
 import argparse
 from difflib import SequenceMatcher
 import json
 from subprocess import Popen, PIPE
 import pkg_resources
+
+SCRIPT_DIR=os.path.dirname(__file__)
 
 parser = argparse.ArgumentParser(description=__doc__,
                                formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -43,8 +46,9 @@ parser.add_argument('--confidence', help='Level of confidence to be set. Default
                     type=int, choices=range(1, 10), default=8)
 args = parser.parse_args()
 
+
 if args.type in ('pip', 'gem'):
-    with open(f"{args.type}.json", encoding='UTF-8') as source:
+    with open(f"{SCRIPT_DIR}/{args.type}.json", encoding='UTF-8') as source:
         data=json.loads(source.read())
     package_names = [_['project'] for _ in data['packages']]
 
